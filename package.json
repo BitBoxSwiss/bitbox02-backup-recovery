@@ -1,0 +1,23 @@
+{
+  "name": "bitbox02_backup",
+  "version": "1.0.0",
+  "description": "Utility to get a seed word list from a single bitbox02 backup file",
+  "main": "get_backup.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheCharlatan/bitbox02_backup.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheCharlatan/bitbox02_backup/issues"
+  },
+  "homepage": "https://github.com/TheCharlatan/bitbox02_backup#readme",
+  "dependencies": {
+    "protobufjs": "6.8.8",
+    "bip39": "3.0.2"
+  }
+}
