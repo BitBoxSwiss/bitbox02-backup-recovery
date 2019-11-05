@@ -27,10 +27,12 @@ function deserializeThis(messageBytes) {
     const backup = Backup.decode(new Uint8Array(messageBytes));
     const backupData = BackupData.decode(new Uint8Array(backup.backupV1.content.data));
     const seedwords = bip39.entropyToMnemonic(backupData.seed);
+    const backupname = backup.backupV1.content.metadata.name;
     document.getElementById("backup-bip39").value = seedwords;
     const date = new Date(backupData.birthdate*1000)
     document.getElementById("seed-timestamp").innerText = date;
     document.getElementById("firmware-version").innerText = backupData.generator;
+    document.getElementById("backup-name").innerText = backupname;
 }
 
 document.getElementById("the-file-input").addEventListener("input", function () {
@@ -44,5 +46,3 @@ document.getElementById("the-file-input").addEventListener("input", function () 
     }
     fileReader.readAsArrayBuffer(file);
 });
-
-

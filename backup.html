@@ -9,7 +9,7 @@
 
 <body>
   <div class="content-width">
-    <h1>BitBox02 Backup Center</h1>
+    <h1>BitBox02 Recovery Tool</h1>
     <div class="section" id="instructions">
         <h2>Backup center instructions</h2>
         <ol>
@@ -27,8 +27,9 @@
       <p>This is your BIP39 seed phrase:</p>
       <textarea id="backup-bip39" class="text-input" rows="3" cols="70" wrap="hard" spellcheck="false" readonly></textarea>
       <div>
-        <p>It was created on the following date:<div id="seed-timestamp"></div></p>
-        <p>Using BitBox02 firmware version:<div id="firmware-version"> </div></p>
+        <p><strong>Wallet / backup name:</strong> <span id="backup-name"></span></p>
+        <p><strong>It was created on the following date:</strong> <span id="seed-timestamp"></span></p>
+        <p><strong>Using BitBox02 firmware version:</strong> <span id="firmware-version"> </span></p>
       </div>
     </div>
     <div class="section" id="derivation_info">
