@@ -39,41 +39,41 @@
         <li>The BIP32 extended master private key is m.</li>
         <li>BIP 44 specifies the following standard:</li>
         <ul>
-          <li>m / purpose’ / coin_type’ / account’ / change / address_index</li>
+          <li>m / purpose' / coin_type' / account' / change / address_index</li>
         </ul>
       </ul>
       <h4>Purpose field</h4>
         <ul>
           <li>Purpose is set as follows:</li>
           <ul>
-            <li>Segwit (P2PSH) = 49’</li>
-            <li>Native Segwit (P2WPKH) = 84’</li>
+            <li>Segwit (P2PSH) = 49'</li>
+            <li>Native Segwit (P2WPKH) = 84'</li>
           </ul>
         </ul>
       <h4>Coin_type field</h4>
         <ul>
           <li>Coin_type is set in accordance to SLIP-44:</li>
           <ul>
-            <li>Bitcoin = 0</li>
-            <li>Testnets = 1’</li>
-            <li>Litecoin = 2</li>
+            <li>Bitcoin = 0'</li>
+            <li>Testnets = 1'</li>
+            <li>Litecoin = 2'</li>
+            <li>Ethereum (incl. ERC-20) = 60'</li>
           </ul>
         </ul>
       <h4>Account field</h4>
         <ul>
           <li>BitBoxApp currently only supports a single account, therefore wallets created via the BitBoxApp will use 0 for the account field.</li>
-          <li>Wallets created with other wallet software have a different account field number.</li>
+          <li>Wallets created with other wallet software can have a different account field number.</li>
         </ul>
       <h4>Change field</h4>
         <ul>
           <li>0 for normal receive addresses</li>
           <li>1 for internally generated change addresses</li>
         </ul>
-        <h4>Address field</h4>
-          <ul>
-            <li>Addresses are numbered from index 0 in sequentially increasing manner.</li>
-            <li>1 for internally generated change addresses</li>
-          </ul>
+      <h4>Address field</h4>
+        <ul>
+          <li>Addresses are numbered from index 0 in sequentially increasing manner.</li>
+        </ul>
     </div>
   </div>
   <script src="js/get_backup_bundled.js"></script>

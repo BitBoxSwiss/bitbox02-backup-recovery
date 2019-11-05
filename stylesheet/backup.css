@@ -25,6 +25,7 @@ input[type='file'] {
 ol {
   line-height: 1.8em;
 }
+
 .custom-file-upload {
     display: inline-block;
     padding: 0.6em;
