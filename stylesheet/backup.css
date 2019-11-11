@@ -1,3 +1,51 @@
+html, body {
+  margin: 0;
+  width: 100%;
+}
+
 body {
-    margin: 10px;
+  font-family: Arial;
+  color: black;
+}
+
+.content-width {
+  margin: 0 auto;
+  max-width: 1000px;
+  padding: 1em;
+}
+
+.section {
+  margin-top: 3em;
+}
+
+input[type='file'] {
+  display: none;
+}
+
+ol {
+  line-height: 1.8em;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 0.6em;
+    margin: 1em;
+    background-color: #5E94BF;
+    color: white;
+    font-size: 20px;
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.custom-file-upload:hover {
+    background-color: white;
+    color: black;
+}
+
+.text-input {
+  border: solid 1px lightgray;
+  border-radius: 5px;
+  min-height: 100px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 300;
 }

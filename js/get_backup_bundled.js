@@ -28,10 +28,12 @@ function deserializeThis(messageBytes) {
     const backup = Backup.decode(new Uint8Array(messageBytes));
     const backupData = BackupData.decode(new Uint8Array(backup.backupV1.content.data));
     const seedwords = bip39.entropyToMnemonic(backupData.seed);
+    const backupname = backup.backupV1.content.metadata.name;
     document.getElementById("backup-bip39").value = seedwords;
     const date = new Date(backupData.birthdate*1000)
     document.getElementById("seed-timestamp").innerText = date;
     document.getElementById("firmware-version").innerText = backupData.generator;
+    document.getElementById("backup-name").innerText = backupname;
 }
 
 document.getElementById("the-file-input").addEventListener("input", function () {
@@ -45,8 +47,6 @@ document.getElementById("the-file-input").addEventListener("input", function () 
     }
     fileReader.readAsArrayBuffer(file);
 });
-
-
 
 },{"./protobuf_backup_messages":2,"bip39":11}],2:[function(require,module,exports){
 /*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars*/
@@ -19245,8 +19245,8 @@ module.exports = function (password, salt, iterations, keylen) {
   }
 }
 
-}).call(this,{"isBuffer":require("../../../../../../usr/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
-},{"../../../../../../usr/lib/node_modules/browserify/node_modules/is-buffer/index.js":60}],30:[function(require,module,exports){
+}).call(this,{"isBuffer":require("../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js")})
+},{"../../../../../../../../usr/local/lib/node_modules/browserify/node_modules/is-buffer/index.js":60}],30:[function(require,module,exports){
 var md5 = require('create-hash/md5')
 var RIPEMD160 = require('ripemd160')
 var sha = require('sha.js')
