@@ -5,7 +5,18 @@ html, body {
 
 body {
   font-family: Arial;
+  line-height: 1.4;
   color: black;
+}
+
+h1, h4 {
+  margin-top: 30px;
+  margin-bottom: 0;
+}
+
+a {
+  color: #5E94BF;
+  text-decoration: none;
 }
 
 .content-width {
@@ -29,16 +40,16 @@ ol {
 .custom-file-upload {
     display: inline-block;
     padding: 0.6em;
-    margin: 1em;
+    margin: 0;
     background-color: #5E94BF;
     color: white;
-    font-size: 20px;
+    font-size: 16px;
     box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
 }
 
 .custom-file-upload:hover {
-    background-color: white;
-    color: black;
+    background-color: #4E84AF;
+    cursor: pointer;
 }
 
 .text-input {
