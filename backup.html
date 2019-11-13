@@ -77,7 +77,10 @@
         <h4>Address_index level</h4>
         <p>
           Wallet software increment the address index from 0.
-          The BitBoxApp respects a gap limit of 20 unused addresses according to BIP44.
+          The BitBoxApp respects a gap limit of 20 unused receive addresses according to BIP44.
+          The gap limit for change addresses is 6 in order to be compatible with Electrum.
+          (For the legacy account, the receive gap limit is 60 and the change gap limit is 25 for historical reasons,
+          but the BitBox02 doesn't support legacy transactions.)
           As the gap limit cannot be enforced by the BitBox02,
           the firmware rejects address indexes higher than 9999,
           allowing at most 10'000 addresses for both the internal and the external chain.
