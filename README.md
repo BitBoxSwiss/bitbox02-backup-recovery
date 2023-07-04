@@ -22,10 +22,6 @@ On first use download the node modules while in the project's root directory wit
 
     npm install
 
-Also install browserify globally:
-
-    npm install -g browserify
-
 The protobuf generated `js/protobuf_backup_messages.js` file is then bundled with the
 protobuf and bip39 dependencies into the `js/get_backup.js` file with browserify:
 
