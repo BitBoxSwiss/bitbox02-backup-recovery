@@ -12,7 +12,7 @@ var $root = $protobuf.roots["default"] || ($protobuf.roots["default"] = {});
 /**
  * BackupMode enum.
  * @exports BackupMode
- * @enum {string}
+ * @enum {number}
  * @property {number} PLAINTEXT=0 PLAINTEXT value
  */
 $root.BackupMode = (function() {
@@ -95,11 +95,11 @@ $root.BackupMetaData = (function() {
     BackupMetaData.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        if (message.timestamp != null && message.hasOwnProperty("timestamp"))
+        if (message.timestamp != null && Object.hasOwnProperty.call(message, "timestamp"))
             writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.timestamp);
-        if (message.name != null && message.hasOwnProperty("name"))
+        if (message.name != null && Object.hasOwnProperty.call(message, "name"))
             writer.uint32(/* id 2, wireType 2 =*/18).string(message.name);
-        if (message.mode != null && message.hasOwnProperty("mode"))
+        if (message.mode != null && Object.hasOwnProperty.call(message, "mode"))
             writer.uint32(/* id 3, wireType 0 =*/24).int32(message.mode);
         return writer;
     };
@@ -135,15 +135,18 @@ $root.BackupMetaData = (function() {
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.timestamp = reader.uint32();
-                break;
-            case 2:
-                message.name = reader.string();
-                break;
-            case 3:
-                message.mode = reader.int32();
-                break;
+            case 1: {
+                    message.timestamp = reader.uint32();
+                    break;
+                }
+            case 2: {
+                    message.name = reader.string();
+                    break;
+                }
+            case 3: {
+                    message.mode = reader.int32();
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -212,6 +215,12 @@ $root.BackupMetaData = (function() {
         if (object.name != null)
             message.name = String(object.name);
         switch (object.mode) {
+        default:
+            if (typeof object.mode === "number") {
+                message.mode = object.mode;
+                break;
+            }
+            break;
         case "PLAINTEXT":
         case 0:
             message.mode = 0;
@@ -243,7 +252,7 @@ $root.BackupMetaData = (function() {
         if (message.name != null && message.hasOwnProperty("name"))
             object.name = message.name;
         if (message.mode != null && message.hasOwnProperty("mode"))
-            object.mode = options.enums === String ? $root.BackupMode[message.mode] : message.mode;
+            object.mode = options.enums === String ? $root.BackupMode[message.mode] === undefined ? message.mode : $root.BackupMode[message.mode] : message.mode;
         return object;
     };
 
@@ -256,6 +265,21 @@ $root.BackupMetaData = (function() {
      */
     BackupMetaData.prototype.toJSON = function toJSON() {
         return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for BackupMetaData
+     * @function getTypeUrl
+     * @memberof BackupMetaData
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    BackupMetaData.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/BackupMetaData";
     };
 
     return BackupMetaData;
@@ -347,13 +371,13 @@ $root.BackupData = (function() {
     BackupData.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        if (message.seedLength != null && message.hasOwnProperty("seedLength"))
+        if (message.seedLength != null && Object.hasOwnProperty.call(message, "seedLength"))
             writer.uint32(/* id 1, wireType 0 =*/8).uint32(message.seedLength);
-        if (message.seed != null && message.hasOwnProperty("seed"))
+        if (message.seed != null && Object.hasOwnProperty.call(message, "seed"))
             writer.uint32(/* id 2, wireType 2 =*/18).bytes(message.seed);
-        if (message.birthdate != null && message.hasOwnProperty("birthdate"))
+        if (message.birthdate != null && Object.hasOwnProperty.call(message, "birthdate"))
             writer.uint32(/* id 3, wireType 0 =*/24).uint32(message.birthdate);
-        if (message.generator != null && message.hasOwnProperty("generator"))
+        if (message.generator != null && Object.hasOwnProperty.call(message, "generator"))
             writer.uint32(/* id 4, wireType 2 =*/34).string(message.generator);
         return writer;
     };
@@ -389,18 +413,22 @@ $root.BackupData = (function() {
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.seedLength = reader.uint32();
-                break;
-            case 2:
-                message.seed = reader.bytes();
-                break;
-            case 3:
-                message.birthdate = reader.uint32();
-                break;
-            case 4:
-                message.generator = reader.string();
-                break;
+            case 1: {
+                    message.seedLength = reader.uint32();
+                    break;
+                }
+            case 2: {
+                    message.seed = reader.bytes();
+                    break;
+                }
+            case 3: {
+                    message.birthdate = reader.uint32();
+                    break;
+                }
+            case 4: {
+                    message.generator = reader.string();
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -468,7 +496,7 @@ $root.BackupData = (function() {
         if (object.seed != null)
             if (typeof object.seed === "string")
                 $util.base64.decode(object.seed, message.seed = $util.newBuffer($util.base64.length(object.seed)), 0);
-            else if (object.seed.length)
+            else if (object.seed.length >= 0)
                 message.seed = object.seed;
         if (object.birthdate != null)
             message.birthdate = object.birthdate >>> 0;
@@ -522,6 +550,21 @@ $root.BackupData = (function() {
      */
     BackupData.prototype.toJSON = function toJSON() {
         return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for BackupData
+     * @function getTypeUrl
+     * @memberof BackupData
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    BackupData.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/BackupData";
     };
 
     return BackupData;
@@ -610,13 +653,13 @@ $root.BackupContent = (function() {
     BackupContent.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        if (message.checksum != null && message.hasOwnProperty("checksum"))
+        if (message.checksum != null && Object.hasOwnProperty.call(message, "checksum"))
             writer.uint32(/* id 1, wireType 2 =*/10).bytes(message.checksum);
-        if (message.metadata != null && message.hasOwnProperty("metadata"))
+        if (message.metadata != null && Object.hasOwnProperty.call(message, "metadata"))
             $root.BackupMetaData.encode(message.metadata, writer.uint32(/* id 2, wireType 2 =*/18).fork()).ldelim();
-        if (message.length != null && message.hasOwnProperty("length"))
+        if (message.length != null && Object.hasOwnProperty.call(message, "length"))
             writer.uint32(/* id 3, wireType 0 =*/24).uint32(message.length);
-        if (message.data != null && message.hasOwnProperty("data"))
+        if (message.data != null && Object.hasOwnProperty.call(message, "data"))
             writer.uint32(/* id 4, wireType 2 =*/34).bytes(message.data);
         return writer;
     };
@@ -652,18 +695,22 @@ $root.BackupContent = (function() {
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.checksum = reader.bytes();
-                break;
-            case 2:
-                message.metadata = $root.BackupMetaData.decode(reader, reader.uint32());
-                break;
-            case 3:
-                message.length = reader.uint32();
-                break;
-            case 4:
-                message.data = reader.bytes();
-                break;
+            case 1: {
+                    message.checksum = reader.bytes();
+                    break;
+                }
+            case 2: {
+                    message.metadata = $root.BackupMetaData.decode(reader, reader.uint32());
+                    break;
+                }
+            case 3: {
+                    message.length = reader.uint32();
+                    break;
+                }
+            case 4: {
+                    message.data = reader.bytes();
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -731,7 +778,7 @@ $root.BackupContent = (function() {
         if (object.checksum != null)
             if (typeof object.checksum === "string")
                 $util.base64.decode(object.checksum, message.checksum = $util.newBuffer($util.base64.length(object.checksum)), 0);
-            else if (object.checksum.length)
+            else if (object.checksum.length >= 0)
                 message.checksum = object.checksum;
         if (object.metadata != null) {
             if (typeof object.metadata !== "object")
@@ -743,7 +790,7 @@ $root.BackupContent = (function() {
         if (object.data != null)
             if (typeof object.data === "string")
                 $util.base64.decode(object.data, message.data = $util.newBuffer($util.base64.length(object.data)), 0);
-            else if (object.data.length)
+            else if (object.data.length >= 0)
                 message.data = object.data;
         return message;
     };
@@ -799,6 +846,21 @@ $root.BackupContent = (function() {
      */
     BackupContent.prototype.toJSON = function toJSON() {
         return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for BackupContent
+     * @function getTypeUrl
+     * @memberof BackupContent
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    BackupContent.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/BackupContent";
     };
 
     return BackupContent;
@@ -860,7 +922,7 @@ $root.BackupV1 = (function() {
     BackupV1.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        if (message.content != null && message.hasOwnProperty("content"))
+        if (message.content != null && Object.hasOwnProperty.call(message, "content"))
             $root.BackupContent.encode(message.content, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
         return writer;
     };
@@ -896,9 +958,10 @@ $root.BackupV1 = (function() {
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.content = $root.BackupContent.decode(reader, reader.uint32());
-                break;
+            case 1: {
+                    message.content = $root.BackupContent.decode(reader, reader.uint32());
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -993,6 +1056,21 @@ $root.BackupV1 = (function() {
         return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
     };
 
+    /**
+     * Gets the default type url for BackupV1
+     * @function getTypeUrl
+     * @memberof BackupV1
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    BackupV1.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/BackupV1";
+    };
+
     return BackupV1;
 })();
 
@@ -1066,7 +1144,7 @@ $root.Backup = (function() {
     Backup.encode = function encode(message, writer) {
         if (!writer)
             writer = $Writer.create();
-        if (message.backupV1 != null && message.hasOwnProperty("backupV1"))
+        if (message.backupV1 != null && Object.hasOwnProperty.call(message, "backupV1"))
             $root.BackupV1.encode(message.backupV1, writer.uint32(/* id 1, wireType 2 =*/10).fork()).ldelim();
         return writer;
     };
@@ -1102,9 +1180,10 @@ $root.Backup = (function() {
         while (reader.pos < end) {
             var tag = reader.uint32();
             switch (tag >>> 3) {
-            case 1:
-                message.backupV1 = $root.BackupV1.decode(reader, reader.uint32());
-                break;
+            case 1: {
+                    message.backupV1 = $root.BackupV1.decode(reader, reader.uint32());
+                    break;
+                }
             default:
                 reader.skipType(tag & 7);
                 break;
@@ -1202,6 +1281,21 @@ $root.Backup = (function() {
      */
     Backup.prototype.toJSON = function toJSON() {
         return this.constructor.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the default type url for Backup
+     * @function getTypeUrl
+     * @memberof Backup
+     * @static
+     * @param {string} [typeUrlPrefix] your custom typeUrlPrefix(default "type.googleapis.com")
+     * @returns {string} The default type url
+     */
+    Backup.getTypeUrl = function getTypeUrl(typeUrlPrefix) {
+        if (typeUrlPrefix === undefined) {
+            typeUrlPrefix = "type.googleapis.com";
+        }
+        return typeUrlPrefix + "/Backup";
     };
 
     return Backup;
