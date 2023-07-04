@@ -10,7 +10,7 @@ tool and it will generate a BIP39 seed for you.
 
 Install the protobufjs tool globally with:
 
-    npm install -g protobuf.js
+    npm install -g protobufjs-cli
 
 Then run:
 
