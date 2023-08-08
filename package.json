@@ -4,7 +4,8 @@
   "description": "Utility to get a seed word list from a single bitbox02 backup file",
   "main": "get_backup.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "generate-msg": "pbjs -t static-module -w commonjs -o ./js/protobuf_backup_messages.js ./messages/backup.proto",
+    "bundle": "browserify js/get_backup.js -o js/get_backup_bundled.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,9 @@
   },
   "homepage": "https://github.com/TheCharlatan/bitbox02_backup#readme",
   "dependencies": {
-    "protobufjs": "6.8.8",
-    "bip39": "3.0.2"
+    "bip39": "3.1.0",
+    "browserify": "17.0.0",
+    "protobufjs": "7.2.4",
+    "protobufjs-cli": "1.1.1"
   }
 }

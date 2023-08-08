@@ -8,13 +8,13 @@ tool and it will generate a BIP39 seed for you.
 
 ### Re-Generating the Protobuf Messages
 
-Install the protobufjs tool globally with:
+Install the dependencies with:
 
-    npm install -g protobuf.js
+    npm install
 
 Then run:
 
-    pbjs -t static-module -w commonjs -o ./js/protobuf_backup_messages.js ./messages/backup.proto
+    npm run generate-msg
 
 ### Bundling for web view
 
@@ -22,14 +22,10 @@ On first use download the node modules while in the project's root directory wit
 
     npm install
 
-Also install browserify globally:
-
-    npm install -g browserify
-
 The protobuf generated `js/protobuf_backup_messages.js` file is then bundled with the
 protobuf and bip39 dependencies into the `js/get_backup.js` file with browserify:
 
-    browserify js/get_backup.js -o js/get_backup_bundled.js
+    npm run bundle
 
 The generated `js/get_backup_bundled.js` script is the only included script in
 `backup.html`.
