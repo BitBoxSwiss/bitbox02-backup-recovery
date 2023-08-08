@@ -1,4 +1,5 @@
 // Copyright 2019 Shift Cryptosecurity AG
+// Copyright 2023 Shift Crypto AG
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -26,10 +27,10 @@ function deserializeThis(messageBytes) {
     }
     const backup = Backup.decode(new Uint8Array(messageBytes));
     const backupData = BackupData.decode(new Uint8Array(backup.backupV1.content.data));
-    const seedwords = bip39.entropyToMnemonic(backupData.seed);
+    const seedwords = bip39.entropyToMnemonic(backupData.seed.subarray(0, backupData.seedLength));
     const backupname = backup.backupV1.content.metadata.name;
     document.getElementById("backup-bip39").value = seedwords;
-    const date = new Date(backupData.birthdate*1000)
+    const date = new Date(backupData.birthdate * 1000)
     document.getElementById("seed-timestamp").innerText = date;
     document.getElementById("firmware-version").innerText = backupData.generator;
     document.getElementById("backup-name").innerText = backupname;
@@ -41,7 +42,7 @@ document.getElementById("the-file-input").addEventListener("input", function () 
 
     // test reading as array buffer
     const fileReader = new FileReader();
-    fileReader.onloadend = function(event) {
+    fileReader.onloadend = function (event) {
         deserializeThis(event.target.result);
     }
     fileReader.readAsArrayBuffer(file);

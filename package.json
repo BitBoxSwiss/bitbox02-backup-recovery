@@ -19,8 +19,10 @@
   "homepage": "https://github.com/TheCharlatan/bitbox02_backup#readme",
   "dependencies": {
     "bip39": "3.1.0",
-    "browserify": "17.0.0",
     "protobufjs": "7.2.4",
     "protobufjs-cli": "1.1.1"
+  },
+  "devDependencies": {
+    "browserify": "17.0.0"
   }
 }
