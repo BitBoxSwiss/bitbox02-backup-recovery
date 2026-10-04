@@ -26,6 +26,12 @@
         <p>Click the button to select the wallet backup file:</p>
         <label for="the-file-input" class="custom-file-upload">Choose file</label>
         <input id="the-file-input" type="file"></input>
+        <p id="backup-warning" class="warning" role="alert" hidden>
+          <strong>Warning: the backup checksum could not be verified.</strong>
+          This file may be damaged. Try another backup copy if available.
+          The recovery phrase is still shown because the seed itself may be intact.
+          Check that it restores the wallet you expect before using it.
+        </p>
         <p>This is the BIP39 seed phrase of the chosen wallet backup file:</p>
         <textarea id="backup-bip39" class="text-input" rows="3" cols="70" wrap="hard" spellcheck="false" readonly></textarea>
         <div>

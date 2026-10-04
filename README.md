@@ -4,6 +4,11 @@ This tool can be used to restore a BIP39 wallet seed phrase from a BitBox02 back
 Open the `backup.html` file with your browser, select the file from the SD card in the
 tool and it will generate a BIP39 seed for you.
 
+If the backup checksum cannot be verified, the tool warns but still shows the
+recovery phrase. The seed may remain usable even if metadata or the checksum is
+damaged. Try another backup copy if available and check that the phrase restores
+the wallet you expect.
+
 ## Developing
 
 ### Re-Generating the Protobuf Messages

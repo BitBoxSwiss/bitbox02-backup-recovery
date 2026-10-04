@@ -15,20 +15,19 @@
 
 const Protobuf = require('./protobuf_backup_messages');
 const bip39 = require('bip39');
+const hasValidChecksum = require('./checksum');
 
 const Backup = Protobuf.Backup;
 const BackupData = Protobuf.BackupData;
 
 function deserializeThis(messageBytes) {
-    const err = Backup.verify(messageBytes);
-    if (err) {
-        alert("Error verifying the backup serialization. Pleaes try using another file: ", err);
-        return;
-    }
     const backup = Backup.decode(new Uint8Array(messageBytes));
-    const backupData = BackupData.decode(new Uint8Array(backup.backupV1.content.data));
+    const content = backup.backupV1.content;
+    const backupData = BackupData.decode(new Uint8Array(content.data));
     const seedwords = bip39.entropyToMnemonic(backupData.seed.subarray(0, backupData.seedLength));
-    const backupname = backup.backupV1.content.metadata.name;
+    const backupname = content.metadata ? content.metadata.name : '';
+    // A damaged checksum or metadata must not prevent recovery of an intact seed.
+    document.getElementById("backup-warning").hidden = hasValidChecksum(content, backupData);
     document.getElementById("backup-bip39").value = seedwords;
     const date = new Date(backupData.birthdate * 1000)
     document.getElementById("seed-timestamp").innerText = date;
