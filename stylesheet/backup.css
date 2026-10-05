@@ -29,6 +29,13 @@ a {
   margin-top: 3em;
 }
 
+.warning {
+  background-color: #fff3cd;
+  border: 1px solid #c58a00;
+  border-radius: 5px;
+  padding: 1em;
+}
+
 input[type='file'] {
   display: none;
 }
